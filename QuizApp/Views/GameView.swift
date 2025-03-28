@@ -12,16 +12,31 @@ struct GameView: View {
     @StateObject var viewModel = GameViewModel()
     
     var body: some View {
-        ZStack {
-            GameColor.main.ignoresSafeArea()
-            VStack (spacing: 15){
-                Spacer()
-                Text(viewModel.questionProgressText)
-                QuestionView(question: viewModel.currentQuestion)
-                .padding()
-                Spacer()
+        NavigationStack {
+            ZStack {
+                GameColor.main.ignoresSafeArea()
+                VStack (spacing: 10){
+                    Spacer()
+                    Text(viewModel.questionProgressText)
+                    QuestionView(question: viewModel.currentQuestion)
+                        .padding()
+                    Spacer()
+                }
+                
+                .foregroundColor(.white)
+                .navigationBarHidden(true)
+                .environmentObject(viewModel)
             }
-            .foregroundColor(.white)
+            .navigationDestination(isPresented: Binding(
+                get: { viewModel.gameIsOver },
+                set: { _ in } // GameViewModel should handle game over state
+            )) {
+                ScoreView(viewModel: ScoreViewModel(
+                    correctGuesses: viewModel.correctGuesses,
+                    incorrectGuesses: viewModel.incorrectGuesses
+                ))
+                .navigationBarBackButtonHidden(true)
+            }
         }
     }
 }

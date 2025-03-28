@@ -28,7 +28,7 @@ struct Question: Hashable {
         Question(questionText: "What Harvard dropout co-founded Microsoft?",
         possibleAnswers: ["Donald Whitaker", "Andy Hayes", "Steve Jobs", "Bill Gates"],
         correctAnswerIndex: 3),
-        Question(questionText: "In what year was the iPhone first released",
+        Question(questionText: "In what year was the iPhone first released?",
         possibleAnswers: ["2009", "2001", "2012", "2007"],
         correctAnswerIndex: 3),
         

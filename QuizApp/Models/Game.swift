@@ -45,4 +45,10 @@ struct Game {
                 isOver = true
             }
         }
+    
+    mutating func restartGame() {
+        if isOver {
+            // navigate to Welcome screen and reset game
+        }
+    }
     }
